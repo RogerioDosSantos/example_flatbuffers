@@ -1,0 +1,7 @@
+**/stage
+**/.vs
+**/build/** 
+!**/build/*.sh
+!**/build/*.bat
+!**/build/*.cmake
+!**/build/DockerFile
