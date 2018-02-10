@@ -1,0 +1,6 @@
+-DTESTFRAMEWORK_GOOGLE
+-D_GNUC
+-I/usr/local/include
+-I../../../third-party
+-I../../../third-party/flatbuffers/include
+-std=c++11
