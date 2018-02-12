@@ -23,8 +23,12 @@ include("${config_file_path}")
 add_executable(flatbuffers_example
   ./src/main.cpp
   )
+#TODO(Roger) : Create an import interface for the flatbuffers include and libs
 target_include_directories(flatbuffers_example
   PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../../../third-party/flatbuffers/include
+  )
+target_link_libraries(flatbuffers_example
+  PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../../../third-party/flatbuffers/stage/Linux-4.4.0-43-Microsoft/x86_64/lib/libflatbuffers.a
   )
 
 # Install Include

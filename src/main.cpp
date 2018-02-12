@@ -1,4 +1,3 @@
-
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -26,7 +25,7 @@ using flatbuffers_example::Color_Red;
 using flatbuffers_example::Equipment_Weapon;
 using std::vector;
 
-bool RunBasicExample(const char* message)
+bool RunBasicExample(const char* schema_file)
 {
     printf("Basic Example \n");
 
@@ -64,7 +63,23 @@ bool RunBasicExample(const char* message)
     printf("\t\tBuffer Size: %d ; Buffer: 0x%X\n", size, *buffer);
 
     printf("\tParsing To JSON\n");
+    std::string schema;
+    if (!flatbuffers::LoadFile(schema_file, false, &schema))
+    {
+        printf("\t\tCould not load the schema file\n");
+        return false;
+    }
+
+    printf("\t\tSchema: %s\n", schema.c_str());
+
+    // const char* include_directories[] = {"/mnt/c/Users/roger/git/roger/examples/cpp/flatbuffers/src", nullptr};
     Parser parser;
+    if (!parser.Parse(schema.c_str()/* , include_directories */))
+    {
+        printf("\t\tCould not parse the schema file\n");
+        return false;
+    }
+
     std::string jsongen;
     if (!GenerateText(parser, buffer, &jsongen))
         printf("\t\tCouldn't serialize parsed data to JSON!\n");
@@ -102,7 +117,7 @@ int main(int argc, char const* argv[])
         RunBasicExample(arguments[1].c_str());
     else
         std::cout << "Invalid Command (" << argc << "):\n\t" << arguments[0] << "\nOptions:\n"
-                  << "\tbasic_example <message>\t\t\t\t\t-E.g.: basic_example Hello\n"
+                  << "\tbasic_example <schema_file>\t\t\t\t\t-E.g.: basic_example ./stage/include/schema.fbs\n"
                   << "\n";
 
     return 0;
