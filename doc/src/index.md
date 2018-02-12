@@ -7,6 +7,21 @@
 
 ## How to compile
 
+### How to compile FlatBuffers
+
+[FlatBuffers git repository](https://github.com/google/flatbuffers)
+
+[FlatBuffers building documentation](https://google.github.io/flatbuffers/flatbuffers_guide_building.html)
+
+
+``` shell
+
+cd <flatbuffers_git_folder>
+cmake -G "Unix Makefiles"
+make
+
+``````
+
 ### Linux
 
 - Run */build/compile_linux_default.sh*
