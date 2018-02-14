@@ -1,0 +1,57 @@
+namespace Buffer;
+
+table Bool {
+    value: bool;
+}
+
+table Int {
+    value: int;
+}
+
+table Uint {
+    value: uint;
+}
+
+table Long {
+    value: long;
+}
+
+table Ulong {
+    value: ulong;
+}
+
+table Double {
+    value: double;
+}
+
+table String {
+    value: string;
+}
+
+union Value {
+    Bool,
+    Int,
+    Uint,
+    Long,
+    Ulong,
+    Double,
+    String,
+    Object
+}
+
+enum KeyType: byte {
+    Name = 0,
+        TimeStamp = 1
+}
+
+table Object {
+    key: string(key);
+    /* key: string; */
+    key_type: KeyType;
+    timestamp: string;
+    name: string;
+    value: Value;
+    objects: [Object];
+}
+
+root_type Object;
